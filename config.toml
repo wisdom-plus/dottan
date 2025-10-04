@@ -1,0 +1,7 @@
+username = "example_user"
+email = "test@example.com"
+
+[settings]
+  theme = "dark"
+  branch = "main"
+  github_url = "https://github.com/wisdom-plus/dottan"
