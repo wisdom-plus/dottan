@@ -1,7 +1,7 @@
 package main
 
 type Config struct {
-	GlobalConfig Globalconfig `toml:"global_config"`
+	GlobalConfig GlobalConfig `toml:"global_config"`
 	UserConfig   UserConfig   `toml:"user_config"`
 }
 
