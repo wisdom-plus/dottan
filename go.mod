@@ -1,4 +1,4 @@
-module dottan
+module github.com/wisdom-plus/dottan
 
 go 1.24.3
 

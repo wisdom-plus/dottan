@@ -18,7 +18,7 @@ var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Show the version of Dottan CLI",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Dottan CLI", version)
+		fmt.Printf("Dottan CLI version: %s\n", version)
 	},
 }
 
