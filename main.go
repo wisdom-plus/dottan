@@ -1,10 +1,9 @@
 /*
 Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-
 */
 package main
 
-import "dottan/cmd"
+import "github.com/wisdom-plus/dottan/cmd"
 
 func main() {
 	cmd.Execute()
