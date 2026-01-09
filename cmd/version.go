@@ -5,6 +5,7 @@ package cmd
 
 import (
 	"fmt"
+	"io"
 
 	"github.com/spf13/cobra"
 )
@@ -14,14 +15,19 @@ var (
 )
 
 // versionCmd represents the version command
-var versionCmd = &cobra.Command{
-	Use:   "version",
-	Short: "Show the version of Dottan CLI",
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("Dottan CLI version: %s\n", version)
-	},
+func newVersionCmd(out io.Writer) *cobra.Command {
+	return &cobra.Command{
+		Use:   "version",
+		Short: "Show the version of Dottan CLI",
+		Args:  cobra.NoArgs,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			_, err := fmt.Fprintln(out, version)
+			return err
+		},
+	}
 }
 
 func init() {
-	rootCmd.AddCommand(versionCmd)
+	stdout := rootCmd.OutOrStdout()
+	rootCmd.AddCommand(newVersionCmd(stdout))
 }
