@@ -4,8 +4,6 @@ import (
 	"bytes"
 	"strings"
 	"testing"
-
-	"github.com/spf13/cobra"
 )
 
 func TestVersionCommand(t *testing.T) {
@@ -15,7 +13,9 @@ func TestVersionCommand(t *testing.T) {
 
 	buf := new(bytes.Buffer)
 
-	cmd := newVersionCmd(buf)
+	cmd := newVersionCmd()
+	cmd.SetOut(buf)
+	cmd.SetErr(buf)
 	cmd.SetArgs([]string{})
 
 	if err := cmd.Execute(); err != nil {
@@ -32,9 +32,7 @@ func TestVersionCommand(t *testing.T) {
 }
 
 func TestVersionCommand_RejectArgs(t *testing.T) {
-	buf := new(bytes.Buffer)
-	cmd := newVersionCmd(buf)
-	cmd.Args = cobra.NoArgs
+	cmd := newVersionCmd()
 
 	cmd.SetArgs([]string{"extra"})
 	if err := cmd.Execute(); err == nil {
@@ -51,7 +49,7 @@ func TestVersionCommand_Call_RootCmd(t *testing.T) {
 	errOut := new(bytes.Buffer)
 
 	origOut := rootCmd.OutOrStdout()
-	origErr := rootCmd.OutOrStderr()
+	origErr := rootCmd.ErrOrStderr()
 	t.Cleanup(func() {
 		rootCmd.SetOut(origOut)
 		rootCmd.SetErr(origErr)
