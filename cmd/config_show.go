@@ -57,10 +57,10 @@ var configShowCmd = &cobra.Command{
 				fmt.Fprintln(cmd.OutOrStdout(), fmt.Sprintf("%v", v))
 				return nil
 			}
-			fmt.Fprint(cmd.OutOrStdout(), fmt.Sprintf("%v", v))
 			if len(out) > 0 && out[len(out)-1] != '\n' {
-				fmt.Fprintln(cmd.OutOrStdout())
+				out = append(out, '\n')
 			}
+			fmt.Fprint(cmd.OutOrStdout(), string(out))
 		}
 		return nil
 	},
