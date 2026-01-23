@@ -29,10 +29,13 @@ var configSetCmd = &cobra.Command{
 			return fmt.Errorf("failed to read config: %w", err)
 		}
 
-		var m map[string]any
-		if err := toml.Unmarshal(b, &m); err != nil {
-			return err
+		m := map[string]any{}
+		if len(b) > 0 {
+			if err := toml.Unmarshal(b, &m); err != nil {
+				return err
+			}
 		}
+
 		if err := setByDotKey(m, key, value); err != nil {
 			return err
 		}

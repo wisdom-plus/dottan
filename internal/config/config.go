@@ -6,5 +6,7 @@ type Config struct {
 }
 
 type Profile struct {
-	GitHubURL string `toml:"github_url"`
+	GitHubURL  string `toml:"github_url"`
+	GitHubRepo string `toml:"github_repo"`
+	Enviroment string `toml:"enviroment"`
 }
